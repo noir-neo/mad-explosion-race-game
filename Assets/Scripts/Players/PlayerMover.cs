@@ -15,6 +15,7 @@ namespace Players
                 .Subscribe(_ =>
                 {
                     _rigidBody.AddRelativeForce(_playerCore.MovementForce * Time.deltaTime, ForceMode.Force);
+                    _rigidBody.AddRelativeTorque(_playerCore.MovementTorque * Time.deltaTime, ForceMode.Force);
                 })
                 .AddTo(this);
         }
