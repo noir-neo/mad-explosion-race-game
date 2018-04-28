@@ -350,7 +350,6 @@ GameObject:
   - component: {fileID: 2077765135}
   - component: {fileID: 2077765134}
   - component: {fileID: 2077765138}
-  - component: {fileID: 2077765141}
   - component: {fileID: 2077765140}
   - component: {fileID: 2077765139}
   m_Layer: 0
@@ -466,16 +465,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8a9803168b4488681ca1e127e09e12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerParameters: {fileID: 2077765141}
---- !u!114 &2077765141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2077765133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2de28c76274fc4a32ba4eece395139e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _thrust: 800
+  _playerParameters: {fileID: 11400000, guid: 94c6d462c12504b7e866e120258f1ea5, type: 2}

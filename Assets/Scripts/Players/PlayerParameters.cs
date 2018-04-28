@@ -2,7 +2,8 @@ using UnityEngine;
 
 namespace Players
 {
-    class PlayerParameters : MonoBehaviour
+    [CreateAssetMenu]
+    class PlayerParameters : ScriptableObject
     {
         [SerializeField] private float _thrust;
         public float Thrust => _thrust;
