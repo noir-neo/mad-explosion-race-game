@@ -78,6 +78,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4175223822365018}
+  - component: {fileID: 114197990045351800}
   m_Layer: 0
   m_Name: Course001
   m_TagString: Untagged
@@ -1859,6 +1860,33 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
+--- !u!114 &114197990045351800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1970063306802512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14224b8e71244b668644e85f6c7f508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positions:
+  - {x: -0.0000076293945, y: 0.5024538, z: 0}
+  - {x: 8.933333, y: 0.5024538, z: 234.5}
+  - {x: 75.933334, y: 0.5024538, z: 276.93335}
+  - {x: 134, y: 0.5024538, z: 281.4}
+  - {x: 158.56667, y: 0.5024538, z: 281.4}
+  - {x: 212.16667, y: 0.5024538, z: 245.66667}
+  - {x: 230.3, y: 0.5024538, z: 222.8}
+  - {x: 225.56667, y: 0.5024538, z: -51.366684}
+  - {x: 201, y: 0.5024538, z: -78.16667}
+  - {x: 176.43333, y: 0.5024538, z: -102.73334}
+  - {x: 118.36667, y: 0.5024538, z: -107.200005}
+  - {x: 82.63333, y: 0.5024538, z: -107.200005}
+  - {x: 32.6, y: 0.5024538, z: -66.7}
+  - {x: 13.4, y: 0.5024538, z: -49.13334}
+  - {x: 13.4, y: 0.5024538, z: 0}
 --- !u!114 &114409970822900194
 MonoBehaviour:
   m_ObjectHideFlags: 1
