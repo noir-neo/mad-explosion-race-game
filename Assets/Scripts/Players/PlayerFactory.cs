@@ -19,8 +19,6 @@ namespace Players
 
         [Inject] private CoursePath coursePath;
 
-        [Inject] private GameManagers.IMainGameStarter _mainGameStarter;
-
         private List<PlayerCore> players;
 
         void Start()
@@ -28,43 +26,9 @@ namespace Players
             players = CreatePlayers();
         }
 
-        public PlayerCore CreateHuman(int inputId)
-        {
-            var player = CreatePlayer();
-            var inputEventProvider = player.gameObject.AddComponent<HumanInputEventProvider>();
-            inputEventProvider.Inject(inputId);
-            player.Configure(inputEventProvider, true);
-            return player;
-        }
-
-        private PlayerCore CreateAi()
-        {
-            var player = CreatePlayer(new Vector3(5, 0, 0), Quaternion.identity);
-            var inputEventProvider = player.gameObject.AddComponent<AiInputEventProvider>();
-            inputEventProvider.Inject(coursePath);
-            player.Configure(inputEventProvider);
-            return player;
-        }
-
         private PlayerCore CreatePlayer()
         {
             return CreatePlayer(Vector3.zero, Quaternion.identity);
-        }
-
-        private List<PlayerCore> CreatePlayers()
-        {
-            return Enumerable.Range(0, _gridSize.x)
-                .SelectMany(x => {
-                    return Enumerable.Range(0, _gridSize.y)
-                        .Select(y => new Vector2(x, y));
-                })
-                .Select(grid => {
-                    var offset = _gridInterval.X0Y();
-                    offset.Scale(grid.X0Y());
-                    var position = _firstGridPosition + offset;
-                    return CreatePlayer(position, Quaternion.identity);
-                })
-                .ToList();
         }
 
         private PlayerCore CreatePlayer(Vector3 position, Quaternion rotation)
@@ -73,6 +37,45 @@ namespace Players
             var player = Instantiate(machines[i], position, rotation);
 
             return player.GetComponent<PlayerCore>();
+        }
+
+        private List<PlayerCore> CreatePlayers()
+        {
+            return Enumerable.Range(0, _gridSize.y)
+                .SelectMany(y =>
+                {
+                    return Enumerable.Range(0, _gridSize.x)
+                        .Select(x => new Vector2(x, y));
+                })
+                .Select(grid =>
+                {
+                    var offset = _gridInterval.X0Y();
+                    offset.Scale(grid.X0Y());
+                    var position = _firstGridPosition + offset;
+                    return CreatePlayer(position, Quaternion.identity);
+                })
+                .ToList();
+        }
+
+        public void AssignInputToPlayers(List<int> humanInputIds)
+        {
+            var aiPlayers = players.Take(players.Count - humanInputIds.Count);
+            foreach (var player in aiPlayers)
+            {
+                var inputEventProvider = player.gameObject.AddComponent<AiInputEventProvider>();
+                inputEventProvider.Inject(coursePath);
+                player.Configure(inputEventProvider, false);
+            }
+
+            var humanPlayers = players.Skip(aiPlayers.Count());
+            for (var i = 0; i < humanPlayers.Count(); i++) {
+                var player = humanPlayers.ElementAt(i);
+                var inputId = humanInputIds[i];
+
+                var inputEventProvider = player.gameObject.AddComponent<HumanInputEventProvider>();
+                inputEventProvider.Inject(inputId);
+                player.Configure(inputEventProvider, true);
+            }
         }
     }
 }

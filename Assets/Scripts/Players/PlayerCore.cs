@@ -2,6 +2,7 @@ using System;
 using Cinemachine;
 using UniRx;
 using UnityEngine;
+using Zenject;
 
 namespace Players
 {

@@ -34,17 +34,10 @@ namespace GameManagers
                 })
                 .Skip(1)
                 .Take(1)
-                .Subscribe(history => {
-                    foreach (var id in history) {
-                        this.AssignInputToPlayer(id);
-                    }
+                .Subscribe(inputIds => {
+                    _playerFactory.AssignInputToPlayers(inputIds);
                     _startMainGame.OnNext(Unit.Default);
                 });
-        }
-
-        void AssignInputToPlayer(int inputId)
-        {
-            _playerFactory.CreateHuman(inputId);
         }
 
         List<Tuple<int, Players.InputImpls.HumanInputEventProvider>> AddInputEventProviders()
