@@ -1,4 +1,5 @@
 using System;
+using Cinemachine;
 using UniRx;
 using UnityEngine;
 
@@ -7,12 +8,14 @@ namespace Players
     class PlayerCore : MonoBehaviour
     {
         [SerializeField] private PlayerParameters _playerParameters;
+        [SerializeField] private CinemachineVirtualCamera _cinemachineVirtualCamera;
 
         private IInputEventProvider _inputEventProvider;
 
-        public void Inject(IInputEventProvider inputEventProvider)
+        public void Configure(IInputEventProvider inputEventProvider, bool enableCamera = false)
         {
             _inputEventProvider = inputEventProvider;
+            _cinemachineVirtualCamera.enabled = enableCamera;
         }
 
         private IObservable<IInputEventProvider> InputEventProviderAsObservable()
@@ -44,7 +47,7 @@ namespace Players
         }
 
         public float HoverHeight => _playerParameters.HoverHeight;
-        
+
         public float HoverPower => _playerParameters.HoverPower;
     }
 }
