@@ -1,27 +1,30 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(CoursePath))]
-public class CoursePathEditor : Editor
+namespace AIs
 {
-    private CoursePath _coursePath;
-
-    private const string CalculatePath = "Calculate Path";
-
-    void OnEnable()
+    [CustomEditor(typeof(CoursePath))]
+    public class CoursePathEditor : Editor
     {
-        _coursePath = target as CoursePath;
-    }
+        private CoursePath _coursePath;
 
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-        serializedObject.Update();
-        if(GUILayout.Button(CalculatePath))
+        private const string CalculatePath = "Calculate Path";
+
+        void OnEnable()
         {
-            Undo.RecordObject(_coursePath, CalculatePath);
-            _coursePath.CalculatePath();
+            _coursePath = target as CoursePath;
         }
-        serializedObject.ApplyModifiedProperties();
+
+        public override void OnInspectorGUI()
+        {
+            DrawDefaultInspector();
+            serializedObject.Update();
+            if(GUILayout.Button(CalculatePath))
+            {
+                Undo.RecordObject(_coursePath, CalculatePath);
+                _coursePath.CalculatePath();
+            }
+            serializedObject.ApplyModifiedProperties();
+        }
     }
 }
