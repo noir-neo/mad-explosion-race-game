@@ -13,12 +13,6 @@ namespace Players
 
         [Inject] private CoursePath coursePath;
 
-        void Start()
-        {
-            CreateHuman(1);
-            CreateAi();
-        }
-
         public PlayerCore CreateHuman(int inputId)
         {
             var player = CreatePlayer();
