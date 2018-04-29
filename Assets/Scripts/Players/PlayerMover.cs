@@ -12,14 +12,26 @@ namespace Players
 
         void Start()
         {
-            _playerCore.MovementForce
+            _playerCore.MovementForceAsObservable()
                 .CombineLatest(this.FixedUpdateAsObservable(), (force, _) => force)
                 .Subscribe(force => _rigidBody.AddRelativeForce(force * Time.deltaTime))
                 .AddTo(this);
 
-            _playerCore.MovementTorque
+            _playerCore.MovementTorqueAsObservable()
                 .CombineLatest(this.FixedUpdateAsObservable(), (torque, _) => torque)
                 .Subscribe(torque => _rigidBody.AddRelativeTorque(torque * Time.deltaTime))
+                .AddTo(this);
+
+            this.FixedUpdateAsObservable()
+                .Subscribe(_ => {
+                    var ray = new Ray(transform.position, -transform.up);
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit, _playerCore.HoverHeight)) {
+                        var propotionalHeight = (_playerCore.HoverHeight - hit.distance) / _playerCore.HoverHeight;
+                        var adjustedHoverForce = Vector3.up * propotionalHeight * _playerCore.HoverPower;
+                        _rigidBody.AddForce(adjustedHoverForce, ForceMode.Acceleration);
+                    }
+                })
                 .AddTo(this);
         }
     }
