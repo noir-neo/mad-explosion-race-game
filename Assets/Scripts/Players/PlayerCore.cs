@@ -1,3 +1,5 @@
+using System;
+using UniRx;
 using UnityEngine;
 
 namespace Players
@@ -6,7 +8,14 @@ namespace Players
     {
         [SerializeField] private PlayerParameters _playerParameters;
 
-        public Vector3 MovementForce => Vector3.forward * _playerParameters.Thrust;
-        public Vector3 MovementTorque => Vector3.up * 1200; // TODO: Remove magic number
+        [SerializeField] private HumanInputEventProvider _inputEventProvider;
+
+        public IObservable<Vector3> MovementForce => _inputEventProvider
+            .GetAccelAsObservable()
+            .Select(accel => Vector3.forward * (accel ? _playerParameters.AccelPower : 0));
+
+        public IObservable<Vector3> MovementTorque => _inputEventProvider
+            .GetSteeringAsObservable()
+            .Select(steering => Vector3.up * _playerParameters.TurnPower * steering);
     }
 }
