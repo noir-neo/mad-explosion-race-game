@@ -187,6 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 249583877}
   - component: {fileID: 249583876}
+  - component: {fileID: 249583878}
   m_Layer: 0
   m_Name: MatchingManager
   m_TagString: Untagged
@@ -220,6 +221,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &249583878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 249583875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 249583876}
+  _identifier: 
+  _context: {fileID: 0}
+  _bindType: 1
 --- !u!1 &282840810
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +455,9 @@ MonoBehaviour:
   - {fileID: 1684521984109080, guid: d582060dbf3db4a9cae3c94a3b054a44, type: 2}
   - {fileID: 1508582188469518, guid: 0279d3db09ba740c6b3a815fd304d34b, type: 2}
   - {fileID: 1455289039301106, guid: bf841adba6fac4fa7ab9c755044f8f3d, type: 2}
+  _gridSize: {x: 2, y: 2}
+  _firstGridPosition: {x: -4, y: 0, z: 0}
+  _gridInterval: {x: 8, y: -8}
 --- !u!4 &1298350253
 Transform:
   m_ObjectHideFlags: 0
