@@ -21,20 +21,30 @@ namespace Players
                 .Where(v => v != null);
         }
 
-        public IObservable<Vector3> MovementForce => InputEventProviderAsObservable()
-            .SelectMany(inputEventProvider =>
-            {
-                return inputEventProvider
-                    .GetAccelAsObservable()
-                    .Select(accel => Vector3.forward * (accel ? _playerParameters.AccelPower : 0));
-            });
+        public IObservable<Vector3> MovementForceAsObservable()
+        {
+            return InputEventProviderAsObservable()
+                .SelectMany(inputEventProvider =>
+                {
+                    return inputEventProvider
+                        .GetAccelAsObservable()
+                        .Select(accel => Vector3.forward * (accel ? _playerParameters.AccelPower : 0));
+                });
+        }
 
-        public IObservable<Vector3> MovementTorque => InputEventProviderAsObservable()
-            .SelectMany(inputEventProvider =>
-            {
-                return inputEventProvider
-                    .GetSteeringAsObservable()
-                    .Select(steering => Vector3.up * _playerParameters.TurnPower * steering);
-            });
+        public IObservable<Vector3> MovementTorqueAsObservable()
+        {
+            return InputEventProviderAsObservable()
+                .SelectMany(inputEventProvider =>
+                {
+                    return inputEventProvider
+                        .GetSteeringAsObservable()
+                        .Select(steering => Vector3.up * _playerParameters.TurnPower * steering);
+                });
+        }
+
+        public float HoverHeight => _playerParameters.HoverHeight;
+        
+        public float HoverPower => _playerParameters.HoverPower;
     }
 }
