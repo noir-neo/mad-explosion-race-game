@@ -11,4 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de28c76274fc4a32ba4eece395139e7, type: 3}
   m_Name: MadCar
   m_EditorClassIdentifier: 
-  _thrust: 1000
+  _accelPower: 2000
+  _turnPower: 2000
