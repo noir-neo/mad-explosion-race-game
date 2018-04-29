@@ -3,18 +3,18 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
-namespace Players
+namespace Players.InputImpls
 {
     class HumanInputEventProvider : MonoBehaviour, IInputEventProvider
     {
-        private PlayerId _playerId;
+        private int _playerId;
 
-        public void Inject(PlayerId playerId)
+        public void Inject(int playerId)
         {
             _playerId = playerId;
         }
 
-        private IObservable<PlayerId> PlayerIdAsObservable()
+        private IObservable<int> PlayerIdAsObservable()
         {
             return this.ObserveEveryValueChanged(_ => _playerId)
                 .Where(v => v != 0);
@@ -22,13 +22,13 @@ namespace Players
 
         public IObservable<bool> GetAccelAsObservable()
         {
-            return this.ObserveEveryValueChanged(_ => Input.GetButton($"Player{(int)_playerId}_Accel"))
+            return this.ObserveEveryValueChanged(_ => Input.GetButton($"Player{_playerId}_Accel"))
                 .SkipUntil(PlayerIdAsObservable());
         }
 
         public IObservable<float> GetSteeringAsObservable()
         {
-            return this.ObserveEveryValueChanged(_ => Input.GetAxis($"Player{(int)_playerId}_Steering"))
+            return this.ObserveEveryValueChanged(_ => Input.GetAxis($"Player{_playerId}_Steering"))
                 .SkipUntil(PlayerIdAsObservable());
         }
     }

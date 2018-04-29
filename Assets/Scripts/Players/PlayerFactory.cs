@@ -15,15 +15,15 @@ namespace Players
 
         void Start()
         {
-            CreateHuman();
+            CreateHuman(1);
             CreateAi();
         }
 
-        private PlayerCore CreateHuman()
+        public PlayerCore CreateHuman(int inputId)
         {
             var player = CreatePlayer();
             var inputEventProvider = player.gameObject.AddComponent<HumanInputEventProvider>();
-            inputEventProvider.Inject(PlayerId.Player1);
+            inputEventProvider.Inject(inputId);
             player.Configure(inputEventProvider, true);
             return player;
         }
