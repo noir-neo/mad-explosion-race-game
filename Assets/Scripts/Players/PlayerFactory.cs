@@ -1,5 +1,8 @@
 using System.Collections.Generic;
+using AIs;
+using Players.InputImpls;
 using UnityEngine;
+using Zenject;
 
 namespace Players
 {
@@ -7,17 +10,43 @@ namespace Players
     {
         [SerializeField] private List<GameObject> machines;
 
+        [Inject] private CoursePath coursePath;
+
         void Start()
         {
-            int i = Random.Range(0, machines.Count);
-            var player = Instantiate(machines[i]);
-            
-            var playerCore = player.GetComponent<PlayerCore>();
+            CreateHuman();
+            CreateAi();
+        }
 
-            var inputEventProvider = player.AddComponent<HumanInputEventProvider>();
+        private PlayerCore CreateHuman()
+        {
+            var player = CreatePlayer();
+            var inputEventProvider = player.gameObject.AddComponent<HumanInputEventProvider>();
             inputEventProvider.Inject(PlayerId.Player1);
+            player.Inject(inputEventProvider);
+            return player;
+        }
 
-            playerCore.Inject(inputEventProvider);
+        private PlayerCore CreateAi()
+        {
+            var player = CreatePlayer(new Vector3(5, 0, 0), Quaternion.identity);
+            var inputEventProvider = player.gameObject.AddComponent<AiInputEventProvider>();
+            inputEventProvider.Inject(coursePath);
+            player.Inject(inputEventProvider);
+            return player;
+        }
+
+        private PlayerCore CreatePlayer()
+        {
+            return CreatePlayer(Vector3.zero, Quaternion.identity);
+        }
+
+        private PlayerCore CreatePlayer(Vector3 position, Quaternion rotation)
+        {
+            int i = Random.Range(0, machines.Count);
+            var player = Instantiate(machines[i], position, rotation);
+
+            return player.GetComponent<PlayerCore>();
         }
     }
 }

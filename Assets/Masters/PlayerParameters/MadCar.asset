@@ -13,3 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _accelPower: 2000
   _turnPower: 2000
+  _hoverHeight: 0
+  _hoverPower: 0
