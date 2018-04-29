@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
@@ -11,12 +12,14 @@ namespace Players
 
         void Start()
         {
-            this.FixedUpdateAsObservable()
-                .Subscribe(_ =>
-                {
-                    _rigidBody.AddRelativeForce(_playerCore.MovementForce * Time.deltaTime, ForceMode.Force);
-                    _rigidBody.AddRelativeTorque(_playerCore.MovementTorque * Time.deltaTime, ForceMode.Force);
-                })
+            _playerCore.MovementForce
+                .CombineLatest(this.FixedUpdateAsObservable(), (force, _) => force)
+                .Subscribe(force => _rigidBody.AddRelativeForce(force * Time.deltaTime))
+                .AddTo(this);
+
+            _playerCore.MovementTorque
+                .CombineLatest(this.FixedUpdateAsObservable(), (torque, _) => torque)
+                .Subscribe(torque => _rigidBody.AddRelativeTorque(torque * Time.deltaTime))
                 .AddTo(this);
         }
     }
