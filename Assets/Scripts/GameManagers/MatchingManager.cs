@@ -6,16 +6,10 @@ using UnityEngine;
 
 namespace GameManagers
 {
-    class MatchingManager : MonoBehaviour, IMainGameStarter
+    class MatchingManager : MonoBehaviour
     {
         [SerializeField] private int _inputCount;
         [SerializeField] private Players.PlayerFactory _playerFactory;
-
-        private Subject<Unit> _startMainGame = new Subject<Unit>();
-        public IObservable<Unit> StartMainGameAsObservable()
-        {
-            return _startMainGame;
-        }
 
         void Start()
         {
@@ -36,7 +30,6 @@ namespace GameManagers
                 .Take(1)
                 .Subscribe(inputIds => {
                     _playerFactory.AssignInputToPlayers(inputIds);
-                    _startMainGame.OnNext(Unit.Default);
                 });
         }
 
