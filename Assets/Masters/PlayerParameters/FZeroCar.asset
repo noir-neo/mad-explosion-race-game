@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de28c76274fc4a32ba4eece395139e7, type: 3}
   m_Name: FZeroCar
   m_EditorClassIdentifier: 
-  _accelPower: 1000
-  _turnPower: 400
+  _accelPower: 2200000
+  _turnPower: 200
   _hoverHeight: 2
-  _hoverPower: 20
+  _hoverPower: 0

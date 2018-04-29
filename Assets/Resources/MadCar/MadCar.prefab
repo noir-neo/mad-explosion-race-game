@@ -671,13 +671,13 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1508582188469518}
   serializedVersion: 2
-  m_Mass: 2
-  m_Drag: 0
+  m_Mass: 500
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 1
 --- !u!65 &65262953033737102
 BoxCollider:
@@ -687,7 +687,7 @@ BoxCollider:
   m_GameObject: {fileID: 1148018887831184}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.4588486, y: 0.77762204, z: 0.7776221}
   m_Center: {x: 0, y: 0, z: 0}
@@ -699,7 +699,7 @@ BoxCollider:
   m_GameObject: {fileID: 1694246736745932}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.6996652, y: 1.608484, z: 1.6084844}
   m_Center: {x: 0, y: 0, z: 0}
@@ -711,7 +711,7 @@ BoxCollider:
   m_GameObject: {fileID: 1677059355801368}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.6996653, y: 1.608484, z: 1.6084844}
   m_Center: {x: 0, y: 0, z: 0}
@@ -723,7 +723,7 @@ BoxCollider:
   m_GameObject: {fileID: 1854300148903130}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.4588487, y: 0.77762204, z: 0.7776221}
   m_Center: {x: 0, y: 0, z: 0}
@@ -737,8 +737,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.349915, y: 1.7983713, z: 4.9649754}
-  m_Center: {x: 0, y: 1.0263243, z: -0.20531976}
+  m_Size: {x: 3.56, y: 1.7983713, z: 6.46}
+  m_Center: {x: 0, y: 1.0263243, z: 0.41}
 --- !u!114 &114109885445667550
 MonoBehaviour:
   m_ObjectHideFlags: 1
