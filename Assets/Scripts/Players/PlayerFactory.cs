@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using AIs;
+using Cinemachine;
 using Players.InputImpls;
 using UnityEngine;
 using Zenject;
@@ -23,7 +24,7 @@ namespace Players
             var player = CreatePlayer();
             var inputEventProvider = player.gameObject.AddComponent<HumanInputEventProvider>();
             inputEventProvider.Inject(PlayerId.Player1);
-            player.Inject(inputEventProvider);
+            player.Configure(inputEventProvider, true);
             return player;
         }
 
@@ -32,7 +33,7 @@ namespace Players
             var player = CreatePlayer(new Vector3(5, 0, 0), Quaternion.identity);
             var inputEventProvider = player.gameObject.AddComponent<AiInputEventProvider>();
             inputEventProvider.Inject(coursePath);
-            player.Inject(inputEventProvider);
+            player.Configure(inputEventProvider);
             return player;
         }
 
