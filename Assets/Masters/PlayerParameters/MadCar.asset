@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: MadCar
   m_EditorClassIdentifier: 
   _accelPower: 2000
-  _turnPower: 3000
+  _turnPower: 200
   _hoverHeight: 0
   _hoverPower: 0

@@ -19,7 +19,8 @@ namespace Players
 
             _playerCore.MovementTorqueAsObservable()
                 .CombineLatest(this.FixedUpdateAsObservable(), (torque, _) => torque)
-                .Subscribe(torque => _rigidBody.AddRelativeTorque(torque * Time.deltaTime))
+                .Select(torque => Quaternion.Euler(torque * Time.deltaTime))
+                .Subscribe(delta => _rigidBody.MoveRotation(_rigidBody.rotation * delta))
                 .AddTo(this);
 
             this.FixedUpdateAsObservable()

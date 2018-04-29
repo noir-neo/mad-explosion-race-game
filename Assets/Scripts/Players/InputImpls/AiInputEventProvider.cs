@@ -31,7 +31,7 @@ namespace Players.InputImpls
         {
             return Observable.Interval(TimeSpan.FromMilliseconds(100))
                 .CombineLatest(_nextCorner, (_, x) => x)
-                .Select(x => Vector3.Distance(transform.position, x) > 20f);
+                .Select(x => Vector3.Distance(transform.position, x) > 1f);
         }
 
         IObservable<float> IInputEventProvider.GetSteeringAsObservable()
