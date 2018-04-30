@@ -98,7 +98,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 6.92
+    agentRadius: 8
     agentHeight: 1
     agentSlope: 6.5
     agentClimb: 0.4
@@ -106,7 +106,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 2.3066666
+    cellSize: 2.6666667
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -345,7 +345,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 12.324, y: 0, z: 0}
 --- !u!1 &581924924
 GameObject:
@@ -403,7 +403,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 609726597}
-  - component: {fileID: 609726598}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -421,8 +420,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -2.070589, z: 6.5970573}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 730200800}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1298350251
 GameObject:
@@ -455,7 +454,7 @@ MonoBehaviour:
   - {fileID: 1684521984109080, guid: d582060dbf3db4a9cae3c94a3b054a44, type: 2}
   - {fileID: 1508582188469518, guid: 0279d3db09ba740c6b3a815fd304d34b, type: 2}
   - {fileID: 1455289039301106, guid: bf841adba6fac4fa7ab9c755044f8f3d, type: 2}
-  _gridSize: {x: 2, y: 2}
+  _gridSize: {x: 2, y: 3}
   _firstGridPosition: {x: -4, y: 0, z: 0}
   _gridInterval: {x: 8, y: -8}
 --- !u!4 &1298350253
