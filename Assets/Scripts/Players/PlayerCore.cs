@@ -3,6 +3,7 @@ using Cinemachine;
 using UniRx;
 using UnityEngine;
 using Zenject;
+using GameManagers;
 
 namespace Players
 {
@@ -12,6 +13,8 @@ namespace Players
         [SerializeField] private CinemachineVirtualCamera _cinemachineVirtualCamera;
 
         private IInputEventProvider _inputEventProvider;
+
+        [Inject] private IRaceStarter _raceStarter;
 
         public void Configure(IInputEventProvider inputEventProvider, bool enableCamera = false)
         {
@@ -27,7 +30,8 @@ namespace Players
 
         public IObservable<Vector3> MovementForceAsObservable()
         {
-            return InputEventProviderAsObservable()
+            return _raceStarter.StartRaceAsObservable()
+                .SelectMany(_ => InputEventProviderAsObservable())
                 .SelectMany(inputEventProvider =>
                 {
                     return inputEventProvider
@@ -38,7 +42,8 @@ namespace Players
 
         public IObservable<Vector3> MovementTorqueAsObservable()
         {
-            return InputEventProviderAsObservable()
+            return _raceStarter.StartRaceAsObservable()
+                .SelectMany(_ => InputEventProviderAsObservable())
                 .SelectMany(inputEventProvider =>
                 {
                     return inputEventProvider
