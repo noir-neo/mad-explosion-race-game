@@ -50,9 +50,5 @@ namespace Players
                 })
                 .Switch();
         }
-
-        public float HoverHeight => _playerParameters.HoverHeight;
-
-        public float HoverPower => _playerParameters.HoverPower;
     }
 }

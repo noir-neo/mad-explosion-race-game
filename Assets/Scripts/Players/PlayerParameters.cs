@@ -10,11 +10,5 @@ namespace Players
 
         [SerializeField] private float _turnPower;
         public float TurnPower => _turnPower;
-
-        [SerializeField] private float _hoverHeight;
-        public float HoverHeight => _hoverHeight;
-
-        [SerializeField] private float _hoverPower;
-        public float HoverPower => _hoverPower;
     }
 }
