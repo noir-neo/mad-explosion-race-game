@@ -12,13 +12,13 @@ namespace Players
 
         void Start()
         {
-            _playerCore.MovementForceAsObservable()
-                .CombineLatest(this.FixedUpdateAsObservable(), (force, _) => force)
+            this.FixedUpdateAsObservable()
+                .WithLatestFrom(_playerCore.MovementForceAsObservable(), (_, x) => x)
                 .Subscribe(force => _rigidBody.AddRelativeForce(force * Time.deltaTime))
                 .AddTo(this);
 
-            _playerCore.MovementTorqueAsObservable()
-                .CombineLatest(this.FixedUpdateAsObservable(), (torque, _) => torque)
+            this.FixedUpdateAsObservable()
+                .WithLatestFrom(_playerCore.MovementTorqueAsObservable(), (_, x) => x)
                 .Select(torque => Quaternion.Euler(torque * Time.deltaTime))
                 .Subscribe(delta => _rigidBody.MoveRotation(_rigidBody.rotation * delta))
                 .AddTo(this);
