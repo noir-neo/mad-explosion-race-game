@@ -71,7 +71,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1685656373524298
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -96,6 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4144213961125204}
   - component: {fileID: 114893481652431564}
+  - component: {fileID: 114682354588345722}
   m_Layer: 0
   m_Name: CM vcam2
   m_TagString: Untagged
@@ -161,7 +162,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4849479028621890
 Transform:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1685656373524298}
@@ -352,7 +353,7 @@ BoxCollider:
   m_Center: {x: -0.8829887, y: 0.37431008, z: 0.0020549744}
 --- !u!114 &114366531251758924
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1685656373524298}
@@ -381,10 +382,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerParameters: {fileID: 11400000, guid: dfc407c3e1a5b45bca9e8554b0b2a948, type: 2}
-  _cinemachineVirtualCamera: {fileID: 114893481652431564}
---- !u!114 &114746571166488758
+--- !u!114 &114682354588345722
 MonoBehaviour:
   m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1845931579083524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f75c0e267a8c4dd88e2474e64212535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerCore: {fileID: 114500747728225072}
+  _virtualCamera: {fileID: 114893481652431564}
+--- !u!114 &114746571166488758
+MonoBehaviour:
+  m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1685656373524298}
@@ -421,7 +434,7 @@ MonoBehaviour:
   m_ComponentOwner: {fileID: 4849479028621890}
 --- !u!114 &114955940577669450
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1685656373524298}
