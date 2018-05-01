@@ -7,6 +7,8 @@ using Players.InputImpls;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
+using GameManagers;
+using UniRx;
 
 namespace Players
 {
@@ -17,24 +19,27 @@ namespace Players
         [SerializeField] private Vector3 _firstGridPosition;
         [SerializeField] private Vector2 _gridInterval;
 
+        [Inject] private DiContainer diContainer;
+
         [Inject] private CoursePath coursePath;
+
+        [Inject] private IHumanInputProvider humanInputProvider;
 
         private List<PlayerCore> players;
 
         void Start()
         {
             players = CreatePlayers();
+            humanInputProvider
+                .HumanInputIdsAsObservable()
+                .Subscribe(ids => { AssignInputToPlayers(ids); })
+                .AddTo(this);
         }
 
-        private PlayerCore CreatePlayer()
-        {
-            return CreatePlayer(Vector3.zero, Quaternion.identity);
-        }
-
-        private PlayerCore CreatePlayer(Vector3 position, Quaternion rotation)
+        private PlayerCore CreatePlayer(Transform transform)
         {
             int i = Random.Range(0, machines.Count);
-            var player = Instantiate(machines[i], position, rotation);
+            var player = diContainer.InstantiatePrefab(machines[i], transform);
 
             return player.GetComponent<PlayerCore>();
         }
@@ -49,10 +54,15 @@ namespace Players
                 })
                 .Select(grid =>
                 {
+                    var transform = (new GameObject()).transform;
+                    transform.position = _firstGridPosition;
+
                     var offset = _gridInterval.X0Y();
                     offset.Scale(grid.X0Y());
-                    var position = _firstGridPosition + offset;
-                    return CreatePlayer(position, Quaternion.identity);
+
+                    transform.position += offset;
+
+                    return CreatePlayer(transform);
                 })
                 .ToList();
         }
@@ -68,7 +78,8 @@ namespace Players
             }
 
             var humanPlayers = players.Skip(aiPlayers.Count());
-            for (var i = 0; i < humanPlayers.Count(); i++) {
+            for (var i = 0; i < humanPlayers.Count(); i++)
+            {
                 var player = humanPlayers.ElementAt(i);
                 var inputId = humanInputIds[i];
 
