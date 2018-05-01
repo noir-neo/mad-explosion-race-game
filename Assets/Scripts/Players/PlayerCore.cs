@@ -26,29 +26,20 @@ namespace Players
 
         public IObservable<Vector3> MovementForceAsObservable()
         {
-            return _raceStarter.StartRaceAsObservable()
-                .SelectMany(_ => _inputEventProvider)
-                .Select(inputEventProvider =>
-                {
-                    return inputEventProvider
-                        .GetAccelAsObservable()
-                        .Select(accel => Vector3.forward * (accel ? _playerParameters.AccelPower : 0));
-                })
-                .Switch();
+            return _raceStarter.StartRaceAsObservable().Zip(_inputEventProvider, (_, x) => x)
+                .First()
+                .Select(inputEventProvider => inputEventProvider.GetAccelAsObservable())
+                .Switch()
+                .Select(accel => Vector3.forward * (accel ? _playerParameters.AccelPower : 0));
         }
 
         public IObservable<Vector3> MovementTorqueAsObservable()
         {
-
-            return _raceStarter.StartRaceAsObservable()
-                .SelectMany(_ => _inputEventProvider)
-                .Select(inputEventProvider =>
-                {
-                    return inputEventProvider
-                        .GetSteeringAsObservable()
-                        .Select(steering => Vector3.up * _playerParameters.TurnPower * steering);
-                })
-                .Switch();
+            return _raceStarter.StartRaceAsObservable().Zip(_inputEventProvider, (_, x) => x)
+                .First()
+                .Select(inputEventProvider => inputEventProvider.GetSteeringAsObservable())
+                .Switch()
+                .Select(steering => Vector3.up * _playerParameters.TurnPower * steering);
         }
     }
 }

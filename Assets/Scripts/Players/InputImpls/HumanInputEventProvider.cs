@@ -7,29 +7,24 @@ namespace Players.InputImpls
 {
     class HumanInputEventProvider : MonoBehaviour, IInputEventProvider
     {
-        private int _playerId;
+        private readonly ISubject<int> _playerId = new AsyncSubject<int>();
 
         public void Inject(int playerId)
         {
-            _playerId = playerId;
-        }
-
-        private IObservable<int> PlayerIdAsObservable()
-        {
-            return this.ObserveEveryValueChanged(_ => _playerId)
-                .Where(v => v != 0);
+            _playerId.OnNext(playerId);
+            _playerId.OnCompleted();
         }
 
         public IObservable<bool> GetAccelAsObservable()
         {
-            return this.ObserveEveryValueChanged(_ => Input.GetButton($"Player{_playerId}_Accel"))
-                .SkipUntil(PlayerIdAsObservable());
+            return _playerId.Select(id => this.ObserveEveryValueChanged(_ => Input.GetButton($"Player{id}_Accel")))
+                .Switch();
         }
 
         public IObservable<float> GetSteeringAsObservable()
         {
-            return this.ObserveEveryValueChanged(_ => Input.GetAxis($"Player{_playerId}_Steering"))
-                .SkipUntil(PlayerIdAsObservable());
+            return _playerId.Select(id => this.ObserveEveryValueChanged(_ => Input.GetAxis($"Player{id}_Steering")))
+                .Switch();
         }
     }
 }

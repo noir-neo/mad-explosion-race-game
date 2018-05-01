@@ -24,7 +24,7 @@ namespace GameManagers
         {
             return CountDownAsObservable()
                 .Skip(countDownStartsFrom)
-                .Take(1)
+                .First()
                 .Select(_ => Unit.Default);
         }
     }
