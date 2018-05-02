@@ -31,7 +31,7 @@ namespace Players
             players = CreatePlayers();
             humanInputProvider
                 .HumanInputIdsAsObservable()
-                .Subscribe(ids => { AssignInputToPlayers(ids); })
+                .Subscribe(AssignInputToPlayers)
                 .AddTo(this);
         }
 
@@ -66,7 +66,7 @@ namespace Players
                 .ToList();
         }
 
-        public void AssignInputToPlayers(List<int> humanInputIds)
+        private void AssignInputToPlayers(List<int> humanInputIds)
         {
             var aiPlayers = players.Take(players.Count - humanInputIds.Count);
             foreach (var player in aiPlayers)
