@@ -10,9 +10,9 @@ namespace GameManagers
     {
         [SerializeField] private int _inputCount;
 
-        private ISubject<Unit> _startMainGame = new AsyncSubject<Unit>();
+        private readonly ISubject<Unit> _startMainGame = new AsyncSubject<Unit>();
 
-        private ISubject<List<int>> _activeHumanInputIds = new AsyncSubject<List<int>>();
+        private readonly ISubject<List<int>> _activeHumanInputIds = new AsyncSubject<List<int>>();
 
         void Start()
         {

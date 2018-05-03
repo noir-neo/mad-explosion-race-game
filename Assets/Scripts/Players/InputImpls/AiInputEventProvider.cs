@@ -32,14 +32,14 @@ namespace Players.InputImpls
 
         IObservable<bool> IInputEventProvider.GetAccelAsObservable()
         {
-            return Observable.Interval(TimeSpan.FromMilliseconds(500))
-                .Select(l => Random.Range(0, 10) > 0)
+            return Observable.Timer(TimeSpan.FromSeconds(0), TimeSpan.FromMilliseconds(500))
+                .Select(_ => Random.Range(0, 10) > 0)
                 .DistinctUntilChanged();
         }
 
         IObservable<float> IInputEventProvider.GetSteeringAsObservable()
         {
-            return Observable.Interval(TimeSpan.FromMilliseconds(50))
+            return Observable.Timer(TimeSpan.FromSeconds(0), TimeSpan.FromMilliseconds(50))
                 .WithLatestFrom(_nextCorner, (_, x) => x)
                 .Select(GetXAxisInput)
                 .DistinctUntilChanged();

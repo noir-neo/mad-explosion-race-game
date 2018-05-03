@@ -1,8 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
 using AIs;
-using Cinemachine;
 using Players.InputImpls;
 using UnityEngine;
 using Zenject;
@@ -32,7 +31,7 @@ namespace Players
             players = CreatePlayers();
             humanInputProvider
                 .HumanInputIdsAsObservable()
-                .Subscribe(ids => { AssignInputToPlayers(ids); })
+                .Subscribe(AssignInputToPlayers)
                 .AddTo(this);
         }
 
@@ -67,25 +66,22 @@ namespace Players
                 .ToList();
         }
 
-        public void AssignInputToPlayers(List<int> humanInputIds)
+        private void AssignInputToPlayers(List<int> humanInputIds)
         {
             var aiPlayers = players.Take(players.Count - humanInputIds.Count);
             foreach (var player in aiPlayers)
             {
                 var inputEventProvider = player.gameObject.AddComponent<AiInputEventProvider>();
                 inputEventProvider.Inject(coursePath);
-                player.Configure(inputEventProvider, false);
+                player.Configure(inputEventProvider);
             }
 
-            var humanPlayers = players.Skip(aiPlayers.Count());
-            for (var i = 0; i < humanPlayers.Count(); i++)
+            var humanPlayers = players.TakeLast(humanInputIds.Count).Zip(humanInputIds, Tuple.Create);
+            foreach (var t in humanPlayers.Select((x, i) => Tuple.Create(x.Item1, x.Item2, i)))
             {
-                var player = humanPlayers.ElementAt(i);
-                var inputId = humanInputIds[i];
-
-                var inputEventProvider = player.gameObject.AddComponent<HumanInputEventProvider>();
-                inputEventProvider.Inject(inputId);
-                player.Configure(inputEventProvider, true);
+                var inputEventProvider = t.Item1.gameObject.AddComponent<HumanInputEventProvider>();
+                inputEventProvider.Inject(t.Item2);
+                t.Item1.Configure(inputEventProvider, t.Item3 + 1);
             }
         }
     }

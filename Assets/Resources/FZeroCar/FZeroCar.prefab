@@ -38,6 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4404075164682660}
   - component: {fileID: 114415222779468472}
+  - component: {fileID: 114149144078810604}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -47,7 +48,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1400951540411964
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -173,7 +174,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4703713070509018
 Transform:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1400951540411964}
@@ -380,7 +381,7 @@ BoxCollider:
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114033315097692872
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1400951540411964}
@@ -399,7 +400,7 @@ MonoBehaviour:
   m_RollDamping: 0
 --- !u!114 &114129947460155494
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1400951540411964}
@@ -422,9 +423,22 @@ MonoBehaviour:
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
   m_BiasY: 0
---- !u!114 &114371588830148658
+--- !u!114 &114149144078810604
 MonoBehaviour:
   m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1253417945008756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f75c0e267a8c4dd88e2474e64212535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerCore: {fileID: 114458306231825056}
+  _virtualCamera: {fileID: 114415222779468472}
+--- !u!114 &114371588830148658
+MonoBehaviour:
+  m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1400951540411964}
@@ -484,7 +498,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerParameters: {fileID: 11400000, guid: fb77132f0a5a14deab4df6db4c55f14b, type: 2}
-  _cinemachineVirtualCamera: {fileID: 114415222779468472}
 --- !u!136 &136140606261318460
 CapsuleCollider:
   m_ObjectHideFlags: 1

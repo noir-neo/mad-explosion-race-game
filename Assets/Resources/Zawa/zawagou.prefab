@@ -96,6 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4144213961125204}
   - component: {fileID: 114893481652431564}
+  - component: {fileID: 114682354588345722}
   m_Layer: 0
   m_Name: CM vcam2
   m_TagString: Untagged
@@ -122,8 +123,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1845931579083524}
-  m_LocalRotation: {x: 0.043138158, y: 0, z: -0, w: 0.99906915}
-  m_LocalPosition: {x: 0, y: 2.34, z: -4.97}
+  m_LocalRotation: {x: 0.08217491, y: 0, z: -0, w: 0.9966179}
+  m_LocalPosition: {x: 0, y: 2.34, z: -2.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4849479028621890}
@@ -362,7 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 2.34, z: -4.97}
+  m_FollowOffset: {x: 0, y: 2.34, z: -2.59}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -381,7 +382,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerParameters: {fileID: 11400000, guid: dfc407c3e1a5b45bca9e8554b0b2a948, type: 2}
-  _cinemachineVirtualCamera: {fileID: 114893481652431564}
+--- !u!114 &114682354588345722
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1845931579083524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f75c0e267a8c4dd88e2474e64212535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerCore: {fileID: 114500747728225072}
+  _virtualCamera: {fileID: 114893481652431564}
 --- !u!114 &114746571166488758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -413,10 +426,10 @@ MonoBehaviour:
   m_Follow: {fileID: 4644294793270074}
   m_PositionBlending: 0
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 70
     OrthographicSize: 10
     NearClipPlane: 0.1
-    FarClipPlane: 5000
+    FarClipPlane: 500
     Dutch: 0
   m_ComponentOwner: {fileID: 4849479028621890}
 --- !u!114 &114955940577669450
