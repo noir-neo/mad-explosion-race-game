@@ -897,7 +897,7 @@ MonoBehaviour:
   - {fileID: 1508582188469518, guid: 0279d3db09ba740c6b3a815fd304d34b, type: 2}
   - {fileID: 1455289039301106, guid: bf841adba6fac4fa7ab9c755044f8f3d, type: 2}
   _gridSize: {x: 2, y: 3}
-  _firstGridPosition: {x: -4, y: 0, z: 0}
+  _firstGridPosition: {x: -4, y: 0, z: -4}
   _gridInterval: {x: 8, y: -8}
 --- !u!4 &1298350253
 Transform:
