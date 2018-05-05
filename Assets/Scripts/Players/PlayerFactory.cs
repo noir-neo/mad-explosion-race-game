@@ -11,7 +11,7 @@ using UniRx;
 
 namespace Players
 {
-    class PlayerFactory : MonoBehaviour
+    class PlayerFactory : MonoBehaviour, ICheckPointPassengersProvider
     {
         [SerializeField] private List<GameObject> machines;
         [SerializeField] private Vector2Int _gridSize;
@@ -24,11 +24,18 @@ namespace Players
 
         [Inject] private IHumanInputProvider humanInputProvider;
 
-        private List<PlayerCore> players;
+        private ReactiveProperty<List<PlayerCore>> players = new ReactiveProperty<List<PlayerCore>>();
+
+        public IObservable<List<ICheckPointPassenger>> CheckPointPassengersAsObservable()
+        {
+            return players.AsObservable()
+                .WhereNotNull()
+                .Select(x => x.Select(y => y.GetComponent<ICheckPointPassenger>()).ToList());
+        }
 
         void Start()
         {
-            players = CreatePlayers();
+            players.Value = CreatePlayers();
             humanInputProvider
                 .HumanInputIdsAsObservable()
                 .Subscribe(AssignInputToPlayers)
@@ -68,7 +75,7 @@ namespace Players
 
         private void AssignInputToPlayers(List<int> humanInputIds)
         {
-            var aiPlayers = players.Take(players.Count - humanInputIds.Count);
+            var aiPlayers = players.Value.Take(players.Value.Count - humanInputIds.Count);
             foreach (var player in aiPlayers)
             {
                 var inputEventProvider = player.gameObject.AddComponent<AiInputEventProvider>();
@@ -76,7 +83,7 @@ namespace Players
                 player.Configure(inputEventProvider);
             }
 
-            var humanPlayers = players.TakeLast(humanInputIds.Count).Zip(humanInputIds, Tuple.Create);
+            var humanPlayers = players.Value.TakeLast(humanInputIds.Count).Zip(humanInputIds, Tuple.Create);
             foreach (var t in humanPlayers.Select((x, i) => Tuple.Create(x.Item1, x.Item2, i)))
             {
                 var inputEventProvider = t.Item1.gameObject.AddComponent<HumanInputEventProvider>();

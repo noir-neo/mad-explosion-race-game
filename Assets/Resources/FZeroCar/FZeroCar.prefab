@@ -48,7 +48,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1400951540411964
 GameObject:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -76,6 +76,8 @@ GameObject:
   - component: {fileID: 65151814784160252}
   - component: {fileID: 114458306231825056}
   - component: {fileID: 114407549477631438}
+  - component: {fileID: 114069486322139714}
+  - component: {fileID: 114498991642530898}
   - component: {fileID: 136140606261318460}
   m_Layer: 0
   m_Name: FZeroCar
@@ -174,7 +176,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4703713070509018
 Transform:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1400951540411964}
@@ -381,7 +383,7 @@ BoxCollider:
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114033315097692872
 MonoBehaviour:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1400951540411964}
@@ -398,9 +400,20 @@ MonoBehaviour:
   m_PitchDamping: 0
   m_YawDamping: 0
   m_RollDamping: 0
+--- !u!114 &114069486322139714
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1455289039301106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3261c423afbdb4cc4933d69c354756bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114129947460155494
 MonoBehaviour:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1400951540411964}
@@ -438,7 +451,7 @@ MonoBehaviour:
   _virtualCamera: {fileID: 114415222779468472}
 --- !u!114 &114371588830148658
 MonoBehaviour:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1400951540411964}
@@ -498,6 +511,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerParameters: {fileID: 11400000, guid: fb77132f0a5a14deab4df6db4c55f14b, type: 2}
+--- !u!114 &114498991642530898
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1455289039301106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb540e4adecba48ff8905be0e270569c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCore: {fileID: 114458306231825056}
+  explosionPrefab: {fileID: 1494314914572824, guid: 6a526cda7db774ff79eda5ffac211fda,
+    type: 2}
 --- !u!136 &136140606261318460
 CapsuleCollider:
   m_ObjectHideFlags: 1
