@@ -7,7 +7,7 @@ using Zenject;
 
 namespace GameManagers
 {
-    public class CourseMarshal : MonoBehaviour
+    public class CourseMarshal : MonoBehaviour, IRaceTerminator
     {
         [SerializeField] private int lapCount;
 
@@ -15,6 +15,13 @@ namespace GameManagers
         [Inject] private ICheckPointPassengersProvider checkPointPassengersProvider;
 
         private List<CheckPoint> shiftedCheckPoints;
+
+        private readonly ISubject<Unit> terminateRace = new AsyncSubject<Unit>();
+
+        public IObservable<Unit> TerminateRaceAsObservable()
+        {
+            return terminateRace;
+        }
 
         void OnValidate()
         {
@@ -35,7 +42,8 @@ namespace GameManagers
                 .First()
                 .Subscribe(_ =>
                 {
-                    Debug.Log("Goal");
+                    terminateRace.OnNext(Unit.Default);
+                    terminateRace.OnCompleted();
                 })
                 .AddTo(this);
         }
