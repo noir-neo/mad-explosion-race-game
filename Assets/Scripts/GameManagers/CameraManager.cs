@@ -44,7 +44,7 @@ namespace GameManagers
                 width = 1 / Mathf.Ceil(totalCamera / 2f),
                 height = totalCamera < 2 ? 1 : 0.5f,
                 x = cameraIndex < 2 ? 0 : 0.5f,
-                y = totalCamera < 1 ? 0 : halfCameraIndex - Mathf.Floor(halfCameraIndex)
+                y = totalCamera < 2 ? 0 : halfCameraIndex - Mathf.Floor(halfCameraIndex)
             };
         }
     }
