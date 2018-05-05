@@ -27,12 +27,10 @@ namespace GameManagers
                         .Select(_ => pair.Item1);
                 })
                 .Merge()
-                .Scan(new List<int>(), (history, id) =>
-                {
-                    return history.Append(id).Distinct().ToList();
-                })
-                .Skip(1)
-                .Take(1)
+                .Scan(new List<int>(), (history, id) => history.Append(id).ToList())
+                .SkipWhile(x => x.Count < 4 && x.GroupBy(n => n).Select(g => g.Count()).All(i => i < 2))
+                .First()
+                .Select(x => x.Distinct().ToList())
                 .Subscribe(inputIds =>
                 {
                     _startMainGame.OnNext(Unit.Default);
