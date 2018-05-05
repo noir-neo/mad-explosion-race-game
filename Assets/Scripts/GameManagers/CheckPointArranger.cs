@@ -5,12 +5,14 @@ using AIs;
 
 namespace GameManagers
 {
-    public class CheckPointArranger : MonoBehaviour
+    public class CheckPointArranger : MonoBehaviour, ICheckPointProvider
     {
         [SerializeField] private CoursePath coursePath;
         [SerializeField] private int minCheckPointCount;
         [SerializeField] private Vector3 colliderSize;
         [SerializeField] private List<CheckPoint> checkPoints;
+
+        public List<CheckPoint> CheckPoints => checkPoints;
 
         void OnValidate()
         {

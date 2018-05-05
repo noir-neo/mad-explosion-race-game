@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 65976137060273738}
   - component: {fileID: 114967725249253862}
   - component: {fileID: 114109885445667550}
+  - component: {fileID: 114601131779146082}
   m_Layer: 0
   m_Name: MadCar
   m_TagString: Untagged
@@ -809,6 +810,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerCore: {fileID: 114109885445667550}
   _virtualCamera: {fileID: 114791135975742304}
+--- !u!114 &114601131779146082
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1508582188469518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3261c423afbdb4cc4933d69c354756bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114736623273253346
 MonoBehaviour:
   m_ObjectHideFlags: 3

@@ -527,9 +527,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - {fileID: 114601392127459144}
+  - {fileID: 114496544324432082}
   _identifier: 
   _context: {fileID: 0}
-  _bindType: 0
+  _bindType: 2
 --- !u!114 &114727908433550802
 MonoBehaviour:
   m_ObjectHideFlags: 1

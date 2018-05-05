@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 65151814784160252}
   - component: {fileID: 114458306231825056}
   - component: {fileID: 114407549477631438}
+  - component: {fileID: 114069486322139714}
   - component: {fileID: 136140606261318460}
   m_Layer: 0
   m_Name: FZeroCar
@@ -398,6 +399,17 @@ MonoBehaviour:
   m_PitchDamping: 0
   m_YawDamping: 0
   m_RollDamping: 0
+--- !u!114 &114069486322139714
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1455289039301106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3261c423afbdb4cc4933d69c354756bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114129947460155494
 MonoBehaviour:
   m_ObjectHideFlags: 3
